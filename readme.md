@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/-jupyter-8B0000?logo=jupyter)
 
 ## Description
-This repository contains research on using deep neural networks to automatically colorize black-and-white videos, enhancing our experience of historical films and providing powerful tools for filmmakers. The approach extends image colorization techniques to video by using diffusion models to introduce noise into frames and a U-Net with self-attention layers to predict the denoised, colorized frames. Training was conducted using the DAVIS and LDV datasets, achieving state-of-the-art results in video colorization across several quality metrics, including PSNR, SSIM, FID, and CDC, as demonstrated at the NTIRE 2023 video colorization challenge.
+This repository contains research on the use of deep neural networks for the automatic colorization of black-and-white videos. The approach extends image colorization techniques to video by employing a autoencoder with U-Net architecture based to predict denoised and colorized frames. Training was conducted using the DAVIS dataset, where a number of loss function combinations were tested to identify the optimal configuration for maintaining object and structure integrity while achieving high-quality colorization.
 
 The article can be found here: [Enhancing Video Colorization with Deep Learning: A Comprehensive Analysis of Training Loss Functions](https://link.springer.com/chapter/10.1007/978-3-031-66329-1_32)
 
@@ -24,13 +24,13 @@ The article can be found here: [Enhancing Video Colorization with Deep Learning:
 This section displays qualitative results through images of various loss function combinations, highlighting visual quality and artifacts. Quantitative results are summarized with metrics like SSIM, PSNR, and LPIPS, providing a detailed performance evaluation of each configuration.
 
 ## Visual Results
-| $S_g$                             | MAE + SSIM                     | MSE + SSIM                     | MAE + Content                  | MSE + Content                  |
+| Gray Frame input                  | MAE + SSIM                     | MSE + SSIM                     | MAE + Content                  | MSE + Content                  |
 |-----------------------------------|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-| ![S_g](./app/Sg.png)             | ![MAE + SSIM](./app/MAE_SSIM.png) | ![MSE + SSIM](./app/MSE_SSIM.png) | ![MAE + Content](./app/MAE_CONTENT.png) | ![MSE + Content](./app/MSE_CONTENT.png) |
+| ![S_g](./app/Sg.png)              | ![MAE + SSIM](./app/MAE_SSIM.png) | ![MSE + SSIM](./app/MSE_SSIM.png) | ![MAE + Content](./app/MAE_CONTENT.png) | ![MSE + Content](./app/MSE_CONTENT.png) |
 
-| $R$                               | MAE + LPIPS                    | MSE + LPIPS                    | MAE + Perceptual               | MSE + Perceptual               |
+| Reference Frame                   | MAE + LPIPS                    | MSE + LPIPS                    | MAE + Perceptual               | MSE + Perceptual               |
 |-----------------------------------|--------------------------------|--------------------------------|--------------------------------|--------------------------------|
-| ![R](./app/R.png)               | ![MAE + LPIPS](./app/MAE_LPIPS.png) | ![MSE + LPIPS](./app/MSE_LPIPS.png) | ![MAE + Perceptual](./app/MAE_PERCEPTUAL.png) | ![MSE + Perceptual](./app/MSE_PERCEPTUAL.png) |
+| ![R](./app/R.png)                 | ![MAE + LPIPS](./app/MAE_LPIPS.png) | ![MSE + LPIPS](./app/MSE_LPIPS.png) | ![MAE + Perceptual](./app/MAE_PERCEPTUAL.png) | ![MSE + Perceptual](./app/MSE_PERCEPTUAL.png) |
 
 ## Results: Combined Loss Functions
 
@@ -86,14 +86,3 @@ pages="496--509",
 isbn="978-3-031-66329-1"
 }
 ```
-
-<!-- ## Usage
-```python
-from lpips_pytorch import LPIPS, lpips
-
-# define as a criterion module (recommended)
-criterion = LPIPS(
-    net_type='alex',  # choose a network type from ['alex', 'squeeze', 'vgg']
-    version='0.1'  # Currently, v0.1 is supported
-)
-loss = criterion(x, y) -->
